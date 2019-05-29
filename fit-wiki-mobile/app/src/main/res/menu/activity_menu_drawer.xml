@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/app_parts">
+        <item
+            android:id="@+id/nav_main"
+            android:title="@string/nav_main_item" />
+        <item
+            android:id="@+id/nav_sections"
+            android:title="@string/nav_sections_item" />
+        <item
+            android:id="@+id/nav_users"
+            android:title="@string/nav_users_item" />
+        <item
+            android:id="@+id/nav_offered"
+            android:title="@string/nav_offered_item"/>
+        <item
+            android:id="@+id/nav_backups"
+            android:title="@string/nav_backups_item" />
+    </group>
+
+    <group android:id="@+id/actions">
+        <item
+            android:id="@+id/nav_new_article"
+            android:title="@string/nav_new_article_item" />
+    </group>
+
+    <group android:id="@+id/logout">
+        <item
+            android:id="@+id/nav_logout"
+            android:title="@string/nav_logout_item"/>
+    </group>
+
+</menu>

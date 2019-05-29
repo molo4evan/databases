@@ -1,0 +1,89 @@
+<resources>
+    <string name="app_name">FITWiki</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="nav_header_title">Username</string>
+    <string name="nav_header_subtitle">Admin</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="nav_main_item">Главная</string>
+    <string name="nav_sections_item">Разделы</string>
+    <string name="nav_users_item">Пользователи</string>
+    <string name="nav_offered_item">Предложенные статьи</string>
+    <string name="nav_backups_item">Резервные копии</string>
+    <string name="nav_new_article_item">Создать статью</string>
+
+    <string name="main_screen_title">Лучшие статьи</string>
+    <string name="sections_title">Разделы</string>
+    <string name="users_title">Пользователи</string>
+    <string name="offered_title">Предложенные статьи</string>
+    <string name="offered_article_title">Предложенная статья</string>
+    <string name="backups_title">Резервные копии</string>
+    <string name="create_article_title">Создание статьи</string>
+    <string name="edit_article_title">Редактирование статьи</string>
+
+    <string name="my_profile_title">Мой профиль</string>
+    <string name="user_profile_title">Просмотр профиля</string>
+    <string name="article_title">Просмотр статьи</string>
+
+    <string name="sign_in">Вход</string>
+    <string name="sign_up">Регистрация</string>
+
+    <string name="article_name_placeholder">Article name</string>
+    <string name="date_placeholder">ДД.ММ.ГГГГ</string>
+    <string name="rating_placeholder">0</string>
+    <string name="article_summary_placeholder">Article summary</string>
+
+    <string name="section_name_holder">Section name</string>
+
+    <string name="username_placeholder">Username</string>
+    <string name="role_placeholder">Role</string>
+
+    <string name="error_placeholder">Извините, произошла неизвестная ошибка</string>
+    <string name="error_view_article">Ошибка: данные статьи или автора не найдены</string>
+    <string name="article_text_placeholder">Article text</string>
+    <string name="error_view_section">Ошибка: раздел не найден</string>
+    <string name="error_view_user_profile">Ошибка: профиль не найден</string>
+
+    <string name="dialog_message_text">Введите название раздела</string>
+    <string name="submit_button_text">ОК</string>
+    <string name="cancel_button_text">Отмена</string>
+    <string name="section_name_placeholder">Section name</string>
+    <string name="nav_logout_item">Выход</string>
+    <string name="user_photo">User photo</string>
+    <string name="register_date_placeholder">Зарегестрирован с: </string>
+    <string name="user_rating_placeholder">Рейтинг: </string>
+    <string name="article_list">Статьи:</string>
+    <string name="common_placeholder">Пользователь</string>
+    <string name="banned_placeholder">Заблокирован</string>
+    <string name="moderator_placeholder">Модератор</string>
+    <string name="administrator_placeholder">Администратор</string>
+    <string name="new_game">new game</string>
+    <string name="help">help</string>
+    <string name="increase_rating_placeholder">Повысить рейтинг</string>
+    <string name="decrease_rating_placeholder">Понизить рейтинг</string>
+    <string name="backup_name_placeholder">Backup</string>
+    <string name="recovery_placeholder">Восстановить</string>
+    <string name="publish_placeholder">Опубликовать</string>
+    <string name="cancel_placeholder">Отказать</string>
+    <string name="input_article_name_placeholder">Введите название статьи</string>
+    <string name="input_summary_placeholder">Введите описание (необязательно)</string>
+    <string name="input_article_text_placeholder">Введите текст статьи</string>
+    <string name="title_activity_sing_in">Sign in</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_photo">Photo URL (optional)</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_up">Sign up</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This username is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+</resources>

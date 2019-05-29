@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "560681084333",
+    "firebase_url": "https://fitwiki-64616.firebaseio.com",
+    "project_id": "fitwiki-64616",
+    "storage_bucket": "fitwiki-64616.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560681084333:android:e799ebe8c1a6ce66",
+        "android_client_info": {
+          "package_name": "ru.nsu.ccfit.android.fitwiki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560681084333-8n10fhmrg34hm55101es2ski6ljq2515.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.nsu.ccfit.android.fitwiki",
+            "certificate_hash": "55cd2f2e5e495145603d1987fe009a37f0632e58"
+          }
+        },
+        {
+          "client_id": "560681084333-mlvt04bchb31d43880iklisar4qh2328.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDJjDlfiW7kPhyGKn8jrcecG3a4XzrZdM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560681084333-mlvt04bchb31d43880iklisar4qh2328.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
