@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.molochev.databases.fitwikibackend.clientmodel
+package ru.nsu.ccfit.molochev.databases.fitwikibackend.clientmodel.articles
 
 import ru.nsu.ccfit.molochev.databases.fitwikibackend.model.Comment
 import java.sql.Timestamp

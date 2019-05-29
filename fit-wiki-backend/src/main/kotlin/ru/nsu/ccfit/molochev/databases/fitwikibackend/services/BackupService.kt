@@ -21,8 +21,8 @@ class BackupService {
 
     fun getBackup(id: UUID): Backup{
         val backup = backupRepository.findById(id)
-        if (backup !is Backup) throw NotFoundException(id)
-        return backup
+        if (!backup.isPresent) throw NotFoundException(id)
+        return backup.get()
     }
 
     fun deleteBackup(id: UUID){

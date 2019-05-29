@@ -24,6 +24,11 @@ class SectionController: CheckingController() {
         return SectionData(sectionService.getSectionById(id))
     }
 
+    @GetMapping("/name/{name}")
+    fun getSectionByName(@PathVariable name: String): SectionData {
+        return SectionData(sectionService.getByName(name))
+    }
+
     @GetMapping("/{id}/subsections")
     fun getSubSections(@PathVariable id: UUID): List<SectionData> {
         val section = sectionService.getSectionById(id)

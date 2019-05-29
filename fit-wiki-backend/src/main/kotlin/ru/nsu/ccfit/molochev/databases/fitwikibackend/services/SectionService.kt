@@ -15,14 +15,14 @@ class SectionService {
 
     fun getSectionById(id: UUID): Section {
         val section = sectionRepository.findById(id)
-        if (section is Section) return section
+        if (section.isPresent) return section.get()
         throw NotFoundException(id)
     }
 
     fun getSubSections(id: UUID): List<Section>{
         val parent = sectionRepository.findById(id)
-        if (parent is Section){
-            return sectionRepository.findAllByParent(parent)
+        if (parent.isPresent){
+            return sectionRepository.findAllByParent(parent.get())
         } else {
             throw NotFoundException(id)
         }
@@ -30,8 +30,14 @@ class SectionService {
 
     fun getParent(id: UUID): Section? {
         val section = sectionRepository.findById(id)
-        if (section is Section) return section.parent
+        if (section.isPresent) return section.get().parent
         else throw NotFoundException(id)
+    }
+
+    fun getByName(name: String): Section {
+        val section = sectionRepository.findByName(name)
+        if (section.isPresent) return section.get()
+        else throw NotFoundException(name)
     }
 
     fun getRootSections() =  sectionRepository.findAllByParentEquals(null)

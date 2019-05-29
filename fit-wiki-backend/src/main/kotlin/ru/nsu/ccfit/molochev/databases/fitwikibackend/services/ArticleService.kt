@@ -10,8 +10,10 @@ import ru.nsu.ccfit.molochev.databases.fitwikibackend.exceptions.NotFoundExcepti
 import ru.nsu.ccfit.molochev.databases.fitwikibackend.model.Article
 import ru.nsu.ccfit.molochev.databases.fitwikibackend.model.PostingID
 import ru.nsu.ccfit.molochev.databases.fitwikibackend.model.Rating
+import ru.nsu.ccfit.molochev.databases.fitwikibackend.model.User
 import ru.nsu.ccfit.molochev.databases.fitwikibackend.repos.ArticleRepository
 import ru.nsu.ccfit.molochev.databases.fitwikibackend.repos.RatingRepository
+import java.lang.Exception
 import java.sql.Timestamp
 import java.util.*
 import javax.transaction.Transactional
@@ -30,7 +32,7 @@ class ArticleService {
 
     fun getArticleByID(id: UUID): Article {
         val article = articleRepository.findById(id)
-        if (article is Article) return article
+        if (article.isPresent) return article.get()
         throw NotFoundException(id)
     }
 
@@ -65,8 +67,8 @@ class ArticleService {
 
     fun offerArticleChanges(article: Article): Article {
         val last = articleRepository.findById(article.id)
-        if (last is Article){
-            article.previousVersion = last.id
+        if (last.isPresent){
+            article.previousVersion = last.get().id
             article.id = UUID.randomUUID()
             article.published = false
             return articleRepository.save(article)
@@ -77,15 +79,16 @@ class ArticleService {
 
     @Transactional
     fun publishOfferedArticle(id: UUID): Article{
-        val article = articleRepository.findById(id)
-        if (article is Article){
+        val optional = articleRepository.findById(id)
+        if (optional.isPresent){
+            val article = optional.get()
             if (article.published) throw NotAcceptableException()
             article.published = true
             if (article.previousVersion != null){
                 val verID: UUID = article.previousVersion!!
                 val previous = articleRepository.findById(verID)
-                return if (previous is Article) {
-                    articleRepository.delete(previous)
+                return if (previous.isPresent) {
+                    articleRepository.delete(previous.get())
                     article.previousVersion = null
                     val out = articleRepository.save(article)
                     articleRepository.updatePreviousVersion(verID, article.id)
@@ -102,37 +105,42 @@ class ArticleService {
 
     fun declineOfferedArticle(id: UUID){
         val article = articleRepository.findById(id)
-        if (article !is Article) throw NotFoundException(id)
-        if (article.published) throw NotAcceptableException()
-        articleRepository.delete(article)
+        if (!article.isPresent) throw NotFoundException(id)
+        if (article.get().published) throw NotAcceptableException()
+        articleRepository.delete(article.get())
     }
 
     @Transactional
-    fun deleteArticle(id: UUID){
-        val article = articleRepository.findById(id)
-        if (article !is Article) throw NotFoundException(id)
+    fun deleteArticle(id: UUID, user: User){
+        val optional = articleRepository.findById(id)
+        if (!optional.isPresent) throw NotFoundException(id)
+        val article = optional.get()
         if (!article.published) throw NotAcceptableException()
+        if (article.author == null && !user.isPrivileged() || article.author != user){
+            throw ForbiddenException()
+        }
         articleRepository.deleteAllByPreviousVersion(article.id)
         articleRepository.delete(article)
     }
 
     fun searchArticles(query: String): List<Article>{
-        return listOf() //TODO: implement
+        return articleRepository.search_articles(query)
     }
 
     @Transactional
     fun rateArticle(articleID: UUID, userID: UUID, increment: Boolean){
         val id = PostingID(articleID, userID)
         val rating = ratingRepository.findById(id)
-        if (rating is Rating){
-            if (rating.increment == increment) throw ForbiddenException()
-            val article = rating.article
+        if (rating.isPresent){
+            if (rating.get().increment == increment) throw ForbiddenException()
+            val article = rating.get().article
             article.rating = article.rating + (if (increment) 1 else -1)
             articleRepository.save(article)
-            ratingRepository.delete(rating)
+            ratingRepository.delete(rating.get())
         } else {
-            val article = articleRepository.findById(articleID)
-            if (article !is Article) throw NotFoundException(articleID)
+            val optional = articleRepository.findById(articleID)
+            if (!optional.isPresent) throw NotFoundException(articleID)
+            val article = optional.get()
             val user = userService.getUserByID(userID)
             val newRating = Rating(id, increment, article, user)
             article.rating = article.rating + (if (increment) 1 else -1)

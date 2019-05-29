@@ -43,4 +43,21 @@ class User(
     fun roleCanBeChanged(other: Role) = role != Role.ADMIN
             && !((role == Role.MODERATOR && other == Role.BANNED)
             || (role == Role.BANNED && other == Role.MODERATOR))
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as User
+
+        if (id != other.id) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return id.hashCode()
+    }
+
+
 }

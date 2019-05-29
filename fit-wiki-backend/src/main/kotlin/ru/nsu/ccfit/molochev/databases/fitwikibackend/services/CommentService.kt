@@ -37,9 +37,9 @@ class CommentService {
 
     fun editComment(id: UUID, text: String): Comment {
         val comment = commentRepository.findById(id)
-        if (comment !is Comment) throw NotFoundException(id)
-        comment.text = text
-        return commentRepository.save(comment)
+        if (!comment.isPresent) throw NotFoundException(id)
+        comment.get().text = text
+        return commentRepository.save(comment.get())
     }
 
     fun deleteComment(id: UUID){

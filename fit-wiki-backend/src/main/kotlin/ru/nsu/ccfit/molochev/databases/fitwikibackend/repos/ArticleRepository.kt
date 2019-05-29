@@ -10,7 +10,6 @@ import ru.nsu.ccfit.molochev.databases.fitwikibackend.model.Article
 import ru.nsu.ccfit.molochev.databases.fitwikibackend.model.Section
 import ru.nsu.ccfit.molochev.databases.fitwikibackend.model.User
 import java.util.*
-import javax.persistence.NamedNativeQuery
 
 interface ArticleRepository: JpaRepository<Article, UUID> {
     fun findAllBySectionAndPublishedIsTrue(section: Section): List<Article>
@@ -28,6 +27,6 @@ interface ArticleRepository: JpaRepository<Article, UUID> {
 
     fun deleteAllByPreviousVersion(previousVersion: UUID)
 
-    @Query("SELECT search_articles()", nativeQuery = true)
-    fun searchArticles
+    @Procedure
+    fun search_articles(question: String): List<Article>
 }
